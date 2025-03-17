@@ -128,7 +128,7 @@ class TestOrderList:
         'Verify that the list of orders is returned if passing valid courier id.')
     @allure.description(
         'Verify that 200 code is returned for GET request with valid courier id.')
-    def test_get_order_list_by_courier_id_returned_successfully(self, create_courier_and_return_courier_id):  # todo
+    def test_get_order_list_by_courier_id_returned_successfully(self, create_courier_and_return_courier_id):
         courier_id = create_courier_and_return_courier_id
         order_id = HelperOrder.get_order_id()
         response_accept_order = OrderApi.accept_order(order_id, courier_id)
