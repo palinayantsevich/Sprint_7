@@ -38,13 +38,13 @@ Includes api methods for endpoints related to the 'Order' object.
 
 You can find all files with the tests for specific page in ['tests'](../blob/main/tests) directory.
 
-### 1. test_courier
+### 1. 'test_courier' files
 
-Includes the set of tests for the 'Courier' endpoints.
+Each file includes the set of tests for each 'Courier' endpoint: creation, deletion, login.
 
-### 2. test_order
+### 2. 'test_order' files
 
-Includes the set of tests for the 'Order' endpoints.
+Each file includes the set of tests for each 'Order' endpoint: accept order, creation, get order by id, get list of orders.
 
 ## Additional files
 
