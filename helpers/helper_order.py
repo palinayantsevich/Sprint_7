@@ -23,7 +23,3 @@ class HelperOrder:
         if response.status_code == RS.OK:
             order_id = response.json()['order']['id']
         return order_id
-
-    @staticmethod
-    def generate_error_message_for_get_order_list_with_invalid_courier_id(courier_id):
-        return f'Курьер с идентификатором {courier_id} не найден'

@@ -13,6 +13,7 @@ class ResponseMessage:
     ACCEPT_ORDER_INVALID_ORDER_ID = 'Заказа с таким id не существует'
     ACCEPT_ORDER_INVALID_COURIER_ID = 'Курьера с таким id не существует'
     ACCEPT_ORDER_PROCESSED_ERROR = 'Этот заказ уже в работе'
+    GET_LIST_OF_ORDERS_INVALID_COURIER_ID = 'Курьер с идентификатором 1 не найден'
 
 
 class ResponseStatus:
