@@ -20,9 +20,7 @@ class TestOrderCreation:
         order_data_dict = OrderData.ORDER_DATA
         order_data_dict['color'] = colors
         order_data_json = json.dumps(order_data_dict)
-        print(order_data_json)
         response = OrderApi.create_order(order_data_json)
-        print(response.json()['track'])
         assert response.status_code == RS.CREATED and response.json()['track'] > 0
 
 
@@ -133,7 +131,6 @@ class TestOrderList:
         order_id = HelperOrder.get_order_id()
         response_accept_order = OrderApi.accept_order(order_id, courier_id)
         response = OrderApi.get_orders_list_by_courier_id(courier_id)
-        print(courier_id)
         assert response.status_code == RS.OK and (
                 courier_id == response.json()['orders'][0]['courierId'] and order_id ==
                 response.json()['orders'][0]['id'])
