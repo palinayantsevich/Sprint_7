@@ -1,4 +1,5 @@
 import json
+import allure
 
 from api.order_api import OrderApi
 from data import ResponseStatus as RS, OrderData
@@ -7,6 +8,7 @@ from data import ResponseStatus as RS, OrderData
 class HelperOrder:
 
     @staticmethod
+    @allure.step('Get order track number.')
     def get_order_track_number():
         track_number = -1
         order_data = json.dumps(OrderData.ORDER_DATA)
@@ -16,6 +18,7 @@ class HelperOrder:
         return track_number
 
     @staticmethod
+    @allure.step('Get order id.')
     def get_order_id():
         order_id = -1
         track_number = HelperOrder.get_order_track_number()
