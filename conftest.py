@@ -1,8 +1,11 @@
 import pytest
 import allure
+import json
 
 from api.courier_api import CourierAPI
-from helpers.helper_courier import HelperCourier
+from api.order_api import OrderApi
+from data import OrderData, ResponseStatus as RS
+from helpers import HelperCourier
 
 
 @pytest.fixture(scope='function')
@@ -38,3 +41,29 @@ def create_courier_and_return_courier_id(generate_courier_data):
                               generate_courier_data['firstName'])
     courier_id = HelperCourier.return_courier_id(generate_courier_data['login'], generate_courier_data['password'])
     return courier_id
+
+
+@pytest.fixture(scope='function')
+@allure.step('Get order track number.')
+def create_order_and_return_order_track_number():
+    track_number = -1
+    order_data = json.dumps(OrderData.ORDER_DATA)
+    response_create_order = OrderApi.create_order(order_data)
+    if response_create_order.status_code == RS.CREATED:
+        track_number = response_create_order.json()['track']
+    return track_number
+
+
+@pytest.fixture(scope='function')
+@allure.step('Get order id.')
+def create_order_and_return_order_id():
+    order_id = -1
+    track_number = -1
+    order_data = json.dumps(OrderData.ORDER_DATA)
+    response_create_order = OrderApi.create_order(order_data)
+    if response_create_order.status_code == RS.CREATED:
+        track_number = response_create_order.json()['track']
+    response = OrderApi.get_order_id(track_number)
+    if response.status_code == RS.OK:
+        order_id = response.json()['order']['id']
+    return order_id

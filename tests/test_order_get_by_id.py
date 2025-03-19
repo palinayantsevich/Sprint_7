@@ -3,7 +3,6 @@ import pytest
 
 from data import ResponseMessage as RM, ResponseStatus as RS, OrderData, CourierData
 from api.order_api import OrderApi
-from helpers.helper_order import HelperOrder
 
 
 class TestOrderGetByID:
@@ -11,9 +10,8 @@ class TestOrderGetByID:
         'Verify that the order id is returned if passing valid track number.')
     @allure.description(
         'Verify that 200 code is returned for GET request if passing valid track number.')
-    def test_get_order_id_by_track_number_returned_successfully(self):
-        track_number = HelperOrder.get_order_track_number()
-        response = OrderApi.get_order_id(track_number)
+    def test_get_order_id_by_track_number_returned_successfully(self, create_order_and_return_order_track_number):
+        response = OrderApi.get_order_id(create_order_and_return_order_track_number)
         assert response.status_code == RS.OK and response.json()['order']['id'] > 0
 
     @allure.title(

@@ -50,9 +50,9 @@ Each file includes the set of tests for each 'Order' endpoint: accept order, cre
 
 There are several auxiliary files in the project
 
-### 1. 'helpers' directory
+### 1. helpers
 
-Created to store additional methods. Includes separate files for 'courier' and 'order' files.
+Created to store additional methods.
 
 ### 2. data
 

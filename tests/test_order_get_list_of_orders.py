@@ -1,10 +1,8 @@
 import allure
-import pytest
 
 from data import ResponseStatus as RS, ResponseMessage as RM, CourierData
 from api.order_api import OrderApi
-from helpers.helper_courier import HelperCourier
-from helpers.helper_order import HelperOrder
+from helpers import HelperCourier
 
 
 class TestOrderList:
@@ -20,9 +18,10 @@ class TestOrderList:
         'Verify that the list of orders is returned if passing valid courier id.')
     @allure.description(
         'Verify that 200 code is returned for GET request with valid courier id.')
-    def test_get_order_list_by_courier_id_returned_successfully(self, create_courier_and_return_courier_id):
+    def test_get_order_list_by_courier_id_returned_successfully(self, create_courier_and_return_courier_id,
+                                                                create_order_and_return_order_id):
+        order_id = create_order_and_return_order_id
         courier_id = create_courier_and_return_courier_id
-        order_id = HelperOrder.get_order_id()
         response_accept_order = OrderApi.accept_order(order_id, courier_id)
         response = OrderApi.get_orders_list_by_courier_id(courier_id)
         assert response.status_code == RS.OK and (

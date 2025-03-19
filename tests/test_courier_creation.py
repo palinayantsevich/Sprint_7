@@ -1,8 +1,8 @@
 import pytest
 import allure
 
-from data import ResponseMessage as RM, ResponseStatus as RS, CourierData
-from helpers.helper_courier import HelperCourier
+from data import ResponseMessage as RM, ResponseStatus as RS
+from helpers import HelperCourier
 from api.courier_api import CourierAPI
 
 
