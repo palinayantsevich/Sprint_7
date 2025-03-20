@@ -38,7 +38,8 @@ def create_and_delete_courier(generate_courier_data):
 def delete_courier():
     courier_id = []
     yield courier_id
-    CourierAPI.delete_courier(*courier_id)
+    with allure.step('Delete courier.'):
+        CourierAPI.delete_courier(*courier_id)
 
 
 @pytest.fixture(scope='function')
