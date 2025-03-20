@@ -35,6 +35,13 @@ def create_and_delete_courier(generate_courier_data):
 
 
 @pytest.fixture(scope='function')
+def delete_courier():
+    courier_id = []
+    yield courier_id
+    CourierAPI.delete_courier(*courier_id)
+
+
+@pytest.fixture(scope='function')
 @allure.step('Create and return courier id.')
 def create_courier_and_return_courier_id(generate_courier_data):
     CourierAPI.create_courier(generate_courier_data['login'], generate_courier_data['password'],

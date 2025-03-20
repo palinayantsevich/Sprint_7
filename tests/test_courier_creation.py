@@ -11,23 +11,23 @@ class TestCourierCreation:
     @allure.title('Verify that the courier is created successfully if all the fields are passed.')
     @allure.description(
         'Verify that 201 code is returned for POST request for courier creation if passing valid login, password and first name fields.')
-    def test_create_courier_all_parameters_created_successfully(self, generate_courier_data):
+    def test_create_courier_all_parameters_created_successfully(self, generate_courier_data, delete_courier):
         response = CourierAPI.create_courier(generate_courier_data['login'], generate_courier_data['password'],
                                              generate_courier_data['firstName'])
         courier_id = HelperCourier.return_courier_id(generate_courier_data['login'], generate_courier_data['password'])
+        delete_courier.append(courier_id)
         assert response.status_code == RS.CREATED and response.text == RM.SUCCESSFULL_COURIER_CREATION
-        HelperCourier.delete_courier(courier_id)
 
     @allure.title('Verify that the courier is created successfully if all the mandatory fields are passed.')
     @allure.description(
         'Verify that 201 code is returned for POST request for courier creation if passing valid login and password.')
-    def test_create_courier_no_first_name_created_successfully(self, generate_courier_data):
+    def test_create_courier_no_first_name_created_successfully(self, generate_courier_data, delete_courier):
         first_name = ''
         response = CourierAPI.create_courier(generate_courier_data['login'], generate_courier_data['password'],
                                              first_name)
         courier_id = HelperCourier.return_courier_id(generate_courier_data['login'], generate_courier_data['password'])
+        delete_courier.append(courier_id)
         assert response.status_code == RS.CREATED and response.text == RM.SUCCESSFULL_COURIER_CREATION
-        HelperCourier.delete_courier(courier_id)
 
     @allure.title(
         'Verify that the courier is not created successfully if any of the the mandatory field is missed in the request.')

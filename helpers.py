@@ -24,8 +24,3 @@ class HelperCourier:
         if response_login_courier.status_code == RS.OK:
             courier_id = response_login_courier.json()['id']
         return courier_id
-
-    @staticmethod
-    @allure.step('Delete courier')
-    def delete_courier(courier_id):
-        CourierAPI.delete_courier(courier_id)
